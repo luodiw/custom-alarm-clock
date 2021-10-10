@@ -1,0 +1,12 @@
+import time
+from playsound import playsound
+from datetime import datetime
+alarmtime = "10:00"
+while True:
+    lcltime = datetime.now().strftime('%H:%H')
+    if lcltime == alarmtime:
+        playsound("alarm.nse")
+        break
+    else:
+        print("Not time yet!")
+        time.sleep(120)
