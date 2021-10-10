@@ -1,0 +1,45 @@
+pip install tkinter
+
+from time import strftime 
+from tkinter import * 
+import time
+import datetime
+from pygame import mixer
+ 
+root = Mg() 
+root.title('Morning Alarm-Clock') 
+def setalarm():
+    alarmtime=f"{hrs.get()}:{mins.get()}:{secs.get()}"
+    print(alarmtime)
+    if(alarmtime!="::"):
+        alarmclock(alarmtime) 
+def alarmclock(alarmtime): 
+    while True:
+        time.sleep(1)
+        time_now=datetime.datetime.now().strftime("%H:%M:%S")
+        print(time_now)
+        if time_now==alarmtime:
+            Wakeup=Label(root, font = ('tahoma', 30, 'bold', 'italic'),
+            text="Wake up!Wake up!Wake up",bg="Red5",fg="navyblue").grid(row=10,columnspan=5)
+            print("Wake Up!")
+            mixer.init()
+            mixer.music.load(r'C:\Users\Luodi\Desktop\Music\Clocksd.mp3')
+            mixer.music.play()
+            break
+hrs=StringVar()
+mins=StringVar()
+secs=StringVar()
+greet=Label(root, font = ('tahoma', 30, 'bold', 'italic'),
+text="Continue sleeping!").grid(row=1,columnspan=3)
+hrbtn=Entry(root,textvariable=hrs,width=5,font =('tahoma', 30, 'bold', 'italic'))
+hrbtn.grid(row=2,column=1)
+minbtn=Entry(root,textvariable=mins,
+width=8,font = ('tahoma', 30, 'bold', 'italic')).grid(row=2,column=2)
+secbtn=Entry(root,textvariable=secs,
+width=8,font = ('tahoma', 30, 'bold', 'italic')).grid(row=2,column=3)
+setbtn=Button(root,text="Set Alarm",command=setalarm,bg="Red5",
+fg="navyblue",font = ('tahoma', 30, 'bold', 'italic')).grid(row=1,columnspan=3)
+timeleft = Label(root,font=('tahoma', 30, 'bold', 'italic')) 
+timeleft.grid()
+  
+mainloop() 
